@@ -1,0 +1,23 @@
+<h2>Template</h2>
+<hr>
+
+<ul class="list-group">
+    <li class="list-group-item"
+        *ngFor="let item of templateMenu"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active"> <!-- El routerLinkActive sirve para colorear la opcion activa -->
+        {{ item.texto }}
+    </li>
+</ul>
+
+<h2>Reactive</h2>
+<hr>
+
+<ul class="list-group mt-3">
+    <li class="list-group-item"
+        *ngFor="let item of reactiveMenu"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active">
+        {{ item.texto }}
+    </li>
+</ul>
