@@ -24,10 +24,13 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <input class="form-control"
-                       placeholder="Agregar favorito"> 
+                       [formControl]="nuevoFavorito"
+                       placeholder="Agregar favorito"
+                       (keyup.enter)="agregarFavorito()"> 
                        <!-- (keyup.enter)="" --> 
                        <button class="btn btn-outline-primary"
-                        type="button">
+                        type="button"
+                        (click)="agregarFavorito()">
                         <!-- (click)="a=1" -->
                     Agregar
                 </button>              
@@ -38,16 +41,18 @@
     <!-- Lista de juegos favoritos -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Favoritos</label>
-        <div class="col-sm-9">
-            <!-- <div class="input-group mb-1"
-                *ngFor="let juego of persona.favoritos; let i = index">
-                <input class="form-control">
+        <div class="col-sm-9" formArrayName="favoritos"> <!-- Con esto el formulario ya sabe que vamos a trabajar con ese array que colocamos en el TS -->
+            <div class="input-group mb-1"
+                *ngFor="let favorito of favoritosArr.controls; let i = index">
+                <input class="form-control"
+                       [formControlName]="i">
 
                 <button class="btn btn-outline-danger"
-                        type="button">
+                        type="button"
+                        (click)="eliminar(i)">
                     Borrar
                 </button>  
-            </div> -->
+            </div>
         </div>
     </div>
 
@@ -66,7 +71,14 @@
 
 </form>
 
+<span>Valid</span>
+<pre>{{ miFormulario.valid }}</pre>
+<br>
 
-<!-- <span>Persona</span>
-<pre>{{ persona | json }}</pre> -->
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
+<br>
 
+<span>Agregar Juego</span>
+<pre>{{ nuevoFavorito.valid | json }}</pre>
+<pre>{{ nuevoFavorito.value | json }}</pre>
