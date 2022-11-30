@@ -1,7 +1,7 @@
 <h2>Templates: Switches</h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario">
     <!-- Radios -->
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Género</label>
@@ -9,10 +9,11 @@
             <div class="form-check">
                 <input class="form-check-input" 
                        type="radio"
-                       value="M" 
-                       name="radioGenero" 
+                       value="M"
+                       formControlName="genero" 
                        id="radioMasculino">
-                <label class="form-check-label" for="radioMasculino">
+                <label class="form-check-label" for="radioMasculino"> <!-- FormControlName y name son 
+                    lo mismo, por lo tanto quito name -->
                   Masculino
                 </label>
             </div>
@@ -21,7 +22,7 @@
                 <input class="form-check-input" 
                        type="radio" 
                        value="F" 
-                       name="radioGenero" 
+                       formControlName="genero" 
                        id="radioFemenino">
                 <label class="form-check-label" for="radioFemenino">
                   Femenino
@@ -38,6 +39,7 @@
             <div class="form-check form-switch mt-2">
                 <input class="form-check-input" 
                        type="checkbox"
+                       formControlName="notificaciones" 
                        role="switch" 
                        id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
@@ -53,6 +55,7 @@
             <div class="form-check">
                 <input class="form-check-input" 
                        type="checkbox"
+                       formControlName="terminos" 
                        id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Terminos y condiciones
@@ -63,7 +66,9 @@
 
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+                    type="submit"
+                    (click)="guardar()">
                 Guardar
             </button>
         </div>
@@ -71,7 +76,7 @@
 </form>
 
 
-<!-- <h5>Valor del formulario</h5>
+<h5>Valor del formulario</h5>
 <pre>{{ miFormulario.value | json }}</pre>
 <br>
 
@@ -83,4 +88,4 @@
 <pre>{{ miFormulario.valid }}</pre>
 <br>
 
-<h5>Condiciones:</h5> -->
+<h5>Condiciones:</h5>
