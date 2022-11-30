@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
 
-        <form>
+        <form [formGroup]="miFormulario">
 
 
 
@@ -13,11 +13,12 @@
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
                     <input type="text"
-                            class="form-control"                           
+                            class="form-control"  
+                            formControlName="nombre"                         
                             placeholder="Nombre del producto"> 
 
-                    <span class="form-text text-danger"> 
-                          <!-- El formulario funciona de la siguiente manera: hasta que yo no lo modifico el input, este no se crea y por lo tanto, el input del producto aparece como undefined y el invalid true o false no se aplica a undefiend. Entonces le digo con ? que si el producto existe, entonces continue y loe value con invalidad. Agregamos la otra condicion de que solo se muestre el mensaje cuando el campo haya sido tocado con un touch -->
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('nombre')">                         
                     Debe de ser de 3 letras</span>
 
                 </div>
@@ -31,9 +32,11 @@
                 <div class="col-sm-9">
                     <input type="number"
                             class="form-control"
+                            formControlName="precio"
                             placeholder="Precio del producto">
 
-                            <span class="form-text text-danger">
+                            <span class="form-text text-danger"
+                                  *ngIf="campoEsValido('precio')">
                                 El precio debe de ser mayor a 0
                             </span>
                 </div>
@@ -47,7 +50,13 @@
                 <div class="col-sm-9">
                     <input type="number"
                             class="form-control"
+                            formControlName="existencias"
                             placeholder="Existencias del producto">
+
+                            <span class="form-text text-danger"
+                                  *ngIf="campoEsValido('existencias')">
+                                Las existencias deben de ser mayor a 0
+                            </span>
                 </div>
             </div>
 
@@ -56,7 +65,9 @@
             <div class="row">
                 <div class="col">
                     <button type="submit" 
-                            class="btn btn-primary float-end">
+                            class="btn btn-primary float-end"
+                            (click)="guardar()">
+                            <!-- [disabled]="miFormulario.invalid" -->
                         Guardar
                     </button>
                 </div>
@@ -68,18 +79,18 @@
 </div>
 
 
-<!-- <div class="row">
+<div class="row">
     <div class="col">
         <span>Valid</span>
         <pre>{{ miFormulario.valid }}</pre>
 
-        <span>Pristine</span> --> <!-- Significa que no se realizo ninguna modificacion en el formulario desde que cargo la pagina -->
-        <!-- <pre>{{ miFormulario.pristine }}</pre>
+        <span>Pristine</span> <!-- Significa que no se realizo ninguna modificacion en el formulario desde que cargo la pagina -->
+        <pre>{{ miFormulario.pristine }}</pre>
 
-        <span>Touched</span> --> <!-- Significa que se ha TOCADO (tanto modificado con letras o simplemente hecho click en algun input) el formulario -->
-        <!-- <pre>{{ miFormulario.touched }}</pre>
+        <span>Touched</span> <!-- Significa que se ha TOCADO (tanto modificado con letras o simplemente hecho click en algun input) el formulario -->
+        <pre>{{ miFormulario.touched }}</pre>
 
         <span>Value</span>
         <pre>{{ miFormulario.value | json }}</pre>
     </div>
-</div> -->
+</div>

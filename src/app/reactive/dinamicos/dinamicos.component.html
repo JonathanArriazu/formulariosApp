@@ -1,16 +1,18 @@
 <h2>Reactivos: <small> Dinámicos </small></h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario">
 
     <!-- Nombre -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
             <input class="form-control"
-                    placeholder="Nombre de la persona">
+                   formControlName="nombre"
+                   placeholder="Nombre de la persona">
 
-            <span class="form-text text-danger">
+            <span class="form-text text-danger"
+                  *ngIf="campoEsValido('nombre')">
                   Este campo es obligatorio
             </span>
         </div>
@@ -53,7 +55,8 @@
         <label class="col-sm-3 col-form-label"></label>
         <div class="col-sm-9">
             <button type="submit"
-                    class="btn btn-primary float-end">
+                    class="btn btn-primary float-end"
+                    (click)="guardar()">
                     <!-- ((click)="a=1") -->
                 Guardar
             </button>
