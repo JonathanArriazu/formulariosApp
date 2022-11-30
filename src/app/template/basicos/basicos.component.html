@@ -15,10 +15,9 @@
                     <input type="text"
                             class="form-control"
                             name="producto"
-                            ngModel
-                            placeholder="Nombre del producto"
-                            required
-                            minlength="3">
+                            [ngModel]='initialForm.producto'                            
+                            placeholder="Nombre del producto" 
+                            > 
 
                     <span class="form-text text-danger"
                           *ngIf="nombreValido()"> 
@@ -37,7 +36,7 @@
                     <input type="number"
                             class="form-control"
                             name="precio"
-                            ngModel
+                            [ngModel]='initialForm.precio' 
                             placeholder="Precio del producto"
                             min="1"
                             required="">
@@ -58,8 +57,11 @@
                     <input type="number"
                             class="form-control"
                             name="existencias"
-                            ngModel
-                            placeholder="Existencias del producto">
+                            [ngModel]='initialForm.existencias'
+                            custonMin
+                            [minimo] ="1" 
+                            placeholder="Existencias del producto"
+                            required> <!-- [minimo] ="1"  es el valor minimo que va a permitir este input. Este valor se extiende desde la directiva-->
                 </div>
             </div>
 
