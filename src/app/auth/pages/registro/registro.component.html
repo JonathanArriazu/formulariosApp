@@ -34,8 +34,21 @@
 
                     <span class="form-text text-danger"
                           *ngIf="campoNoValido('email')">
-                        El correo es obligatorio
+                        {{ emailErrorMsg }}
                     </span>  
+
+                    <!-- <span class="form-text text-danger"
+                          *ngIf="emailRequired()">
+                        El correo es obligatorio
+                    </span>
+                    <span class="form-text text-danger"
+                          *ngIf="emailFormato()">
+                        El valor no tiene formato de correo
+                    </span>    
+                    <span class="form-text text-danger"
+                          *ngIf="emailTomado()">
+                        El correo ya existe
+                    </span>   -->
                 </div>
             </div>
 
@@ -90,7 +103,8 @@
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary float-end"
-                            type="submit">
+                            [disabled]="miFormulario.invalid" 
+                            type="submit"> <!-- [disabled] para que el boton se habilite una vez que el formulario es valido -->
                         Crear
                     </button>
                 </div>
