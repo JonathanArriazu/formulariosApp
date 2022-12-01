@@ -25,11 +25,17 @@
 
             <!-- Email -->
             <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Nombre</label>
+                <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
                     <input type="email"
                            class="form-control"
+                           formControlName="email"
                            placeholder="Email del usuario">     
+
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('email')">
+                        El correo es obligatorio
+                    </span>  
                 </div>
             </div>
 
@@ -39,7 +45,13 @@
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
-                           placeholder="Username del usuario">      
+                           formControlName="username"
+                           placeholder="Username del usuario">   
+                           
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('username')">
+                        El username no puede ser Strider
+                    </span> 
                 </div>
             </div>
 
